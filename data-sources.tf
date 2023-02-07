@@ -1,4 +1,8 @@
-data "docker_logs" "nginx_logs" {
+data "docker_logs" "ctrl_logs" {
+  name = docker_container.control_node.name
+}
+
+data "docker_logs" "mn_logs" {
   for_each = toset(local.names)
-  name     = docker_container.nginx[each.key].name
+  name     = docker_container.managed_nodes[each.key].name
 }

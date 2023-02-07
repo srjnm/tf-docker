@@ -1,3 +1,3 @@
 locals {
-  names = ["waltuh", "jesse", "mr-white"]
+  names = ["m1", "m2", "m3"]
 }
