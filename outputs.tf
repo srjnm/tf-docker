@@ -1,6 +1,6 @@
 output "logs" {
   value = concat(
-    flatten(data.docker_logs.ctrl_logs.logs_list_string),
+    [flatten(data.docker_logs.ctrl_logs.logs_list_string)],
     [for k, v in data.docker_logs.mn_logs : flatten(v.logs_list_string)]
   )
 }

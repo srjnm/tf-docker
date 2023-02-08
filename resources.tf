@@ -30,11 +30,6 @@ resource "docker_container" "managed_nodes" {
     external = 3000 + index(local.names, each.key)
   }
 
-  ports {
-    internal = 22
-    external = 50001 + index(local.names, each.key)
-  }
-
   networks_advanced {
     name = docker_network.bridge.id
   }
@@ -65,13 +60,15 @@ resource "local_file" "ansible_hosts" {
       "ansible_password=passwd",
       "ansible_connection=ssh",
       "ansible_port=50000",
+      "ansible_ssh_common_args='-o StrictHostKeyChecking=no'",
       "",
       "[managed]",
       [for k, v in docker_container.managed_nodes : v.network_data[0].ip_address],
       "[managed:vars]",
       "ansible_user=managed",
       "ansible_password=passwd",
-      "ansible_connection=ssh"
+      "ansible_connection=ssh",
+      "ansible_ssh_common_args='-o StrictHostKeyChecking=no'"
     ]
   ))
 }
