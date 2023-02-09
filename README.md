@@ -8,6 +8,7 @@ What tf does:
 * Store the IPs in hosts file for ansible to use
 
 Result: Turns out Mac does not support that. So cannot use it as a control node
+
 ------------------------------------------------------------------------------------------
 Fix: Creating the whole ansible architecture within a docker network
 
