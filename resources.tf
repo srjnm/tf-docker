@@ -50,7 +50,7 @@ resource "docker_network" "bridge" {
 }
 
 resource "local_file" "ansible_hosts" {
-  filename = "../../ansible-test/config-n-hosts/hosts"
+  filename = "../ansible/hosts"
   content = join("\n", flatten(
     [
       "[control]",
